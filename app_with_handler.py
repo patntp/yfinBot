@@ -30,17 +30,17 @@ from linebot.models import (
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
-channel_secret = os.getenv('1b07eddfdfe07c5cc5be695166bb6706', None)
-channel_access_token = os.getenv('JjWG+YhzofS2nxYVMBeX8zoccqDvhnLT2wa2XwxNK7R1iuuOFR8f7ro4M+y68NTmYBOPYW1ckksYapi4b/OSERdmj4C3Ej6zBPbB+Ap8Mwm0DlbuiRb5DXy9KpFP42ngIWWIFtcHkBTISwF21fPkoQdB04t89/1O/w1cDnyilFU=', None)
-if channel_secret is None:
-    print('Specify LINE_CHANNEL_SECRET as environment variable.')
-    sys.exit(1)
-if channel_access_token is None:
-    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
-    sys.exit(1)
+#channel_secret = os.getenv('1b07eddfdfe07c5cc5be695166bb6706', None)
+#channel_access_token = os.getenv('JjWG+YhzofS2nxYVMBeX8zoccqDvhnLT2wa2XwxNK7R1iuuOFR8f7ro4M+y68NTmYBOPYW1ckksYapi4b/OSERdmj4C3Ej6zBPbB+Ap8Mwm0DlbuiRb5DXy9KpFP42ngIWWIFtcHkBTISwF21fPkoQdB04t89/1O/w1cDnyilFU=', None)
+#if channel_secret is None:
+    #print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    #sys.exit(1)
+#if channel_access_token is None:
+    #print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    #sys.exit(1)
 
-line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookHandler(channel_secret)
+line_bot_api = LineBotApi('JjWG+YhzofS2nxYVMBeX8zoccqDvhnLT2wa2XwxNK7R1iuuOFR8f7ro4M+y68NTmYBOPYW1ckksYapi4b/OSERdmj4C3Ej6zBPbB+Ap8Mwm0DlbuiRb5DXy9KpFP42ngIWWIFtcHkBTISwF21fPkoQdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('1b07eddfdfe07c5cc5be695166bb6706')
 
 
 @app.route("/callback", methods=['POST'])
