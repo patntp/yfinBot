@@ -27,6 +27,9 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+import yfinance as yf
+import pandas as pd
+
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -63,9 +66,14 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
+    data=yf.download(tickers='SPY FB',period='1d',interval='30m')
+    tic = data.iloc[-1]['Adj Close'].index[0]
+    price=data.iloc[-1]['Adj Close'][0]
+    print(tic+' found')    
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text=tic+' : '+str(price))
     )
 
 
