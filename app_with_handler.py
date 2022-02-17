@@ -45,11 +45,11 @@ def message_text(event):
     #use the user's text as tickers to retrieve price data
     data=yf.download(tickers=event.message.text,period='1d',interval='1d')
     price=data.iloc[-1]['Adj Close']
-    print(event.message.text+' price is found.')    
+    print(event.message.text.upper()+' price is found.')    
 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text+' price : '+str(price))
+        TextSendMessage(text=event.message.text.upper()+' price : '+str(price))
     )
 
 
