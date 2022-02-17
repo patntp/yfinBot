@@ -1,17 +1,3 @@
-# -*- coding: utf-8 -*-
-
-#  Licensed under the Apache License, Version 2.0 (the "License"); you may
-#  not use this file except in compliance with the License. You may obtain
-#  a copy of the License at
-#
-#       https://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-#  License for the specific language governing permissions and limitations
-#  under the License.
-
 import os
 import sys
 from argparse import ArgumentParser
@@ -31,16 +17,6 @@ import yfinance as yf
 import pandas as pd
 
 app = Flask(__name__)
-
-# get channel_secret and channel_access_token from your environment variable
-#channel_secret = os.getenv('1b07eddfdfe07c5cc5be695166bb6706', None)
-#channel_access_token = os.getenv('JjWG+YhzofS2nxYVMBeX8zoccqDvhnLT2wa2XwxNK7R1iuuOFR8f7ro4M+y68NTmYBOPYW1ckksYapi4b/OSERdmj4C3Ej6zBPbB+Ap8Mwm0DlbuiRb5DXy9KpFP42ngIWWIFtcHkBTISwF21fPkoQdB04t89/1O/w1cDnyilFU=', None)
-#if channel_secret is None:
-    #print('Specify LINE_CHANNEL_SECRET as environment variable.')
-    #sys.exit(1)
-#if channel_access_token is None:
-    #print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
-    #sys.exit(1)
 
 line_bot_api = LineBotApi('JjWG+YhzofS2nxYVMBeX8zoccqDvhnLT2wa2XwxNK7R1iuuOFR8f7ro4M+y68NTmYBOPYW1ckksYapi4b/OSERdmj4C3Ej6zBPbB+Ap8Mwm0DlbuiRb5DXy9KpFP42ngIWWIFtcHkBTISwF21fPkoQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('1b07eddfdfe07c5cc5be695166bb6706')
@@ -66,14 +42,15 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    data=yf.download(tickers='SPY FB',period='1d',interval='30m')
+    #use the user's text as tickers to retrieve price data
+    data=yf.download(tickers=event.messages.text,period='1d',interval='1d')
     tic = data.iloc[-1]['Adj Close'].index[0]
     price=data.iloc[-1]['Adj Close'][0]
-    print(tic+' found')    
+    print(tic+' price is found.')    
 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=tic+' : '+str(price))
+        TextSendMessage(text=tic+' price : '+str(price))
     )
 
 
