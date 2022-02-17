@@ -44,13 +44,12 @@ def callback():
 def message_text(event):
     #use the user's text as tickers to retrieve price data
     data=yf.download(tickers=event.message.text,period='1d',interval='1d')
-    tic = data.iloc[-1]['Adj Close'].index[0]
-    price=data.iloc[-1]['Adj Close'][0]
-    print(tic+' price is found.')    
+    price=data.iloc[-1]['Adj Close']
+    print(event.message.text+' price is found.')    
 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=tic+' price : '+str(price))
+        TextSendMessage(text=event.message.text+' price : '+str(price))
     )
 
 
