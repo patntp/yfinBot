@@ -1,1 +1,1 @@
-web: python app_with_handler.py
+web: gunicorn app_with_handler:app
