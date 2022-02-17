@@ -43,7 +43,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
     #use the user's text as tickers to retrieve price data
-    data=yf.download(tickers=event.messages.text,period='1d',interval='1d')
+    data=yf.download(tickers=event.message.text,period='1d',interval='1d')
     tic = data.iloc[-1]['Adj Close'].index[0]
     price=data.iloc[-1]['Adj Close'][0]
     print(tic+' price is found.')    
