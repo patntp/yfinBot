@@ -1,24 +1,10 @@
-# Flask Echo
-
-Sample echo-bot using [Flask](http://flask.pocoo.org/)
-
 ## Getting started
 
 ```
-$ export LINE_CHANNEL_SECRET=YOUR_LINE_CHANNEL_SECRET
-$ export LINE_CHANNEL_ACCESS_TOKEN=YOUR_LINE_CHANNEL_ACCESS_TOKEN
+You need to get your channel access token and channel secret in Messaging API from your LINE Developers account. Then use it in 
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
+handler = WebhookHandler('YOUR_LINE_CHANNEL_SECRET')
 
+Run the following in the command line to install required dependencies
 $ pip install -r requirements.txt
-```
-
-Run WebhookParser sample
-
-```
-$ python app.py
-```
-
-Run WebhookHandler sample
-
-```
-$ python app_with_handler.py
 ```
