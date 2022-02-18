@@ -18,8 +18,8 @@ import pandas as pd
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('JjWG+YhzofS2nxYVMBeX8zoccqDvhnLT2wa2XwxNK7R1iuuOFR8f7ro4M+y68NTmYBOPYW1ckksYapi4b/OSERdmj4C3Ej6zBPbB+Ap8Mwm0DlbuiRb5DXy9KpFP42ngIWWIFtcHkBTISwF21fPkoQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('1b07eddfdfe07c5cc5be695166bb6706')
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
+handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 
 
 @app.route("/callback", methods=['POST'])
